@@ -1,12 +1,11 @@
 import React from 'react';
+import Recipe from './Recipe';
 
 export default function RecipeList({ recipes }) {
   return (
-    <div>RecipeList
+    <div>
       {recipes.map((recipe, i) => 
-        <div className="recipeList" key={recipe.title + i}>
-          {recipe.title}
-        </div>
+        <Recipe recipe={recipe} key={i} />
       )}
     </div>
   );
