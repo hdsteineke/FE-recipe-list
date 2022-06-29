@@ -3,7 +3,7 @@ import Recipe from './Recipe';
 import { useState } from 'react';
 import { createRecipe } from './services/fetch-recipes';
 
-export default function RecipeList({ recipes }) {
+export default function RecipeList({ recipes, getRecipesOnLoad }) {
   const [recipeInForm, setRecipeInForm] = useState({
     title: '',
     description: '',
@@ -16,6 +16,7 @@ export default function RecipeList({ recipes }) {
   async function handleSubmit(e) {
     e.preventDefault();
     await createRecipe(recipeInForm);
+    await getRecipesOnLoad();
   }
 
 

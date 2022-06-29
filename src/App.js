@@ -19,17 +19,15 @@ function App() {
     servings: 8
   }]);
 
+  async function getRecipesOnLoad() {
+    const recipeList = await getAllRecipes();
+
+    if (recipeList) {
+      setRecipes(recipeList);
+    }
+  }
 
   useEffect(() => {
-    async function getRecipesOnLoad() {
-      const recipeList = await getAllRecipes();
-      console.log('recipeList', recipeList);
-
-      if (recipeList) {
-        setRecipes(recipeList);
-      }
-    }
-
     getRecipesOnLoad();
   }, []);
 
@@ -41,7 +39,7 @@ function App() {
                 renders the first one that matches the current URL. */}
         <Switch>
           <Route exact path="/">
-            <RecipeList recipes={recipes} />
+            <RecipeList recipes={recipes} getRecipesOnLoad={getRecipesOnLoad} />
           </Route>
         </Switch>
       </div>
