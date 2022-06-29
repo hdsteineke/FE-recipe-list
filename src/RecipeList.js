@@ -1,6 +1,7 @@
 import React from 'react';
 import Recipe from './Recipe';
 import { useState } from 'react';
+import { createRecipe } from './services/fetch-recipes';
 
 export default function RecipeList({ recipes }) {
   const [recipeInForm, setRecipeInForm] = useState({
@@ -10,10 +11,13 @@ export default function RecipeList({ recipes }) {
     cookTime: 0
   });
 
+
+
   async function handleSubmit(e) {
     e.preventDefault();
-    // await createRecipe(recipeInForm);
+    await createRecipe(recipeInForm);
   }
+
 
   return (
     <div>
