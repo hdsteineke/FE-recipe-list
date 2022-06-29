@@ -6,6 +6,7 @@ import {
   Route
 } from 'react-router-dom';
 import RecipeList from './RecipeList';
+import { getAllRecipes } from './services/fetch-recipes';
 
 function App() {
   const [recipes, setRecipes] = useState([{
@@ -17,6 +18,20 @@ function App() {
     totalTime: 55,
     servings: 8
   }]);
+
+
+  useEffect(() => {
+  async function getRecipesOnLoad() {
+    const recipeList = await getAllRecipes();
+    console.log('recipeList', recipeList);
+
+    if (recipeList) {
+      setRecipes(recipeList);
+    }
+  }
+
+  getRecipesOnLoad();
+  }, []);
 
   return (
     <Router>
