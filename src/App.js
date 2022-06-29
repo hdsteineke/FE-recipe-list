@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import RecipeList from './RecipeList';
 import { getAllRecipes } from './services/fetch-recipes';
+import RecipeDetail from './RecipeDetail';
 
 function App() {
   const [recipes, setRecipes] = useState([{
@@ -38,8 +39,11 @@ function App() {
         {/* A <Switch> looks through its children <Route>s and
                 renders the first one that matches the current URL. */}
         <Switch>
-          <Route exact path="/">
+          <Route exact path="/recipes">
             <RecipeList recipes={recipes} getRecipesOnLoad={getRecipesOnLoad} />
+          </Route>
+          <Route exact path="/recipes/:id">
+            <RecipeDetail />
           </Route>
         </Switch>
       </div>
