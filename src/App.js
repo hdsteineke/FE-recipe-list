@@ -21,16 +21,16 @@ function App() {
 
 
   useEffect(() => {
-  async function getRecipesOnLoad() {
-    const recipeList = await getAllRecipes();
-    console.log('recipeList', recipeList);
+    async function getRecipesOnLoad() {
+      const recipeList = await getAllRecipes();
+      console.log('recipeList', recipeList);
 
-    if (recipeList) {
-      setRecipes(recipeList);
+      if (recipeList) {
+        setRecipes(recipeList);
+      }
     }
-  }
 
-  getRecipesOnLoad();
+    getRecipesOnLoad();
   }, []);
 
   return (
