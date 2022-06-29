@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 import {
@@ -6,6 +5,7 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
+import RecipeList from './RecipeList';
 
 function App() {
   return (
