@@ -2,8 +2,8 @@ import React from 'react';
 import { deleteRecipe } from './services/fetch-recipes';
 
 export default function Recipe({ recipe, getRecipesOnLoad }) {
-  async function handleDelete(id) {
-    await deleteRecipe(id);
+  async function handleDelete() {
+    await deleteRecipe(recipe.id);
     await getRecipesOnLoad();
   }
   return (
