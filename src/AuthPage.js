@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import { signInUser, signUpUser } from './services/fetch-users';
 
-export default function AuthPage() {
+export default function AuthPage({ setUser }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   async function handleSignIn(e) {
     e.preventDefault();
-    const message = await signInUser({ email, password });
-    console.log(message);
+    const user = await signInUser({ email, password });
+    setUser(user);
   }
 
   async function handleSignUp(e) {
     e.preventDefault();
-    const message = await signUpUser({ email, password });
-    console.log(message);
+    const user = await signUpUser({ email, password });
+    setUser(user);
   }
 
   return (
