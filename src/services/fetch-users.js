@@ -24,3 +24,14 @@ export async function signUpUser({ email, password }) {
   });
   return resp.json();
 }
+
+export async function getUser() {
+  const resp = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users/me`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    credentials: 'include',
+  });
+  return resp.json();
+}
