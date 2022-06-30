@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getRecipeById } from './services/fetch-recipes';
+import { getRecipeById, updateRecipe } from './services/fetch-recipes';
 
 export default function RecipeDetail() {
   const { id } = useParams();
@@ -14,9 +14,11 @@ export default function RecipeDetail() {
       setRecipeDetails(recipe);
     }
     getRecipe();
-  }, [id]);
+  }, [id, handleUpdate]);
 
-  async function handleUpdate() {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  async function handleUpdate(e) {
+    e.preventDefault();
     await updateRecipe({ id, ...updateRecipeInForm });
   }
 
