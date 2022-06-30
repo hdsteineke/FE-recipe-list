@@ -1,4 +1,5 @@
 import React from 'react';
+import { deleteRecipe } from './services/fetch-recipes';
 
 export default function Recipe({ recipe, getRecipesOnLoad }) {
   async function handleDelete(id) {
