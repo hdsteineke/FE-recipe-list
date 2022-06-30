@@ -39,3 +39,16 @@ export async function deleteRecipe(id) {
   });
   return resp.json();
 }
+
+export async function updateRecipe({ id, ...updatedRecipe }) {
+  const resp = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/recipes/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+    mode: 'cors',
+    body: JSON.stringify(updatedRecipe),
+  });
+  return resp.json();
+}
