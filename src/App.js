@@ -32,14 +32,17 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    getRecipesOnLoad();
-
-    const userOnLoad = getUser();
+  async function getUserOnLoad() {
+    const userOnLoad = await getUser();
 
     if (userOnLoad) {
       setUser(userOnLoad);
     }
+  }
+
+  useEffect(() => {
+    getRecipesOnLoad();
+    getUserOnLoad();
   }, []);
 
   return (
