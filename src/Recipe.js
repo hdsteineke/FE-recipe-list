@@ -1,8 +1,9 @@
 import React from 'react';
 
-export default function Recipe({ recipe }) {
+export default function Recipe({ recipe, getRecipesOnLoad }) {
   async function handleDelete(id) {
     await deleteRecipe(id);
+    await getRecipesOnLoad();
   }
   return (
     <div>
