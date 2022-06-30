@@ -10,6 +10,7 @@ import RecipeList from './RecipeList';
 import { getAllRecipes } from './services/fetch-recipes';
 import RecipeDetail from './RecipeDetail';
 import AuthPage from './AuthPage';
+import { getUser } from './services/fetch-users';
 
 function App() {
   const [recipes, setRecipes] = useState([{
@@ -33,6 +34,12 @@ function App() {
 
   useEffect(() => {
     getRecipesOnLoad();
+
+    const userOnLoad = getUser();
+
+    if (userOnLoad) {
+      setUser(userOnLoad);
+    }
   }, []);
 
   return (
