@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Recipe from './Recipe';
 import { useState } from 'react';
-import { createRecipe } from './services/fetch-recipes';
+import { createRecipe, getAllRecipes } from './services/fetch-recipes';
 
-export default function RecipeList({ recipes, getRecipesOnLoad }) {
+export default function RecipeList() {
+  const [recipes, setRecipes] = useState([
+    {
+      id: 3,
+      title: 'Lasagna',
+      description: 'cheesy goodness',
+      prepTime: 10,
+      cookTime: 45,
+      totalTime: 55,
+      servings: 8,
+    },
+  ]);
   const [recipeInForm, setRecipeInForm] = useState({
     title: '',
     description: '',
@@ -16,6 +27,18 @@ export default function RecipeList({ recipes, getRecipesOnLoad }) {
     await createRecipe(recipeInForm);
     await getRecipesOnLoad();
   }
+
+  async function getRecipesOnLoad() {
+    const recipeList = await getAllRecipes();
+
+    if (recipeList) {
+      setRecipes(recipeList);
+    }
+  }
+
+  useEffect(() => {
+    getRecipesOnLoad();
+  }, []);
 
   return (
     <div>

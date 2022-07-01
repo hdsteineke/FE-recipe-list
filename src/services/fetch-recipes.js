@@ -1,5 +1,12 @@
 export async function getAllRecipes() {
-  const resp = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/recipes`);
+  const resp = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/recipes`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+    mode: 'cors',
+  });
   return resp.json();
 }
 
